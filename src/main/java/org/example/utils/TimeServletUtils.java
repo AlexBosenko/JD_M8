@@ -1,10 +1,7 @@
 package org.example.utils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.DateTimeException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.TimeZone;
@@ -13,7 +10,7 @@ public class TimeServletUtils {
     public static String getUtcDateTime(String parameterName) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss z");
 
-        ZonedDateTime curDateTime = LocalDateTime.now().atZone(ZoneId.systemDefault());
+        ZonedDateTime curDateTime = ZonedDateTime.now(ZoneOffset.UTC);
 
         if (parameterName == null) {
             return curDateTime.format(formatter);
